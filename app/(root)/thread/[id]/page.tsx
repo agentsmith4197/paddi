@@ -1,11 +1,13 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 import Comment from "@/components/forms/Comment";
 import ThreadCard from "@/components/cards/ThreadCard";
 
 import { fetchUser } from "@/lib/actions/user.actions";
 import { fetchThreadById } from "@/lib/actions/thread.actions";
+import Link from "next/link";
 
 export const revalidate = 0;
 
@@ -19,9 +21,16 @@ async function page({ params }: { params: { id: string } }) {
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   const thread = await fetchThreadById(params.id);
-
   return (
     <section className='relative'>
+      <Link href={"/"}>
+      <Image
+                  src='/assets/back-arrow.svg'
+                  alt='heart'
+                  width={35}
+                  height={35}
+                  className='cursor-pointer object-contain mb-3'
+                /></Link>
       <div>
         <ThreadCard
           id={thread._id}
@@ -32,6 +41,7 @@ async function page({ params }: { params: { id: string } }) {
           community={thread.community}
           createdAt={thread.createdAt}
           comments={thread.children}
+          images={thread.images}
         />
       </div>
 
@@ -56,6 +66,7 @@ async function page({ params }: { params: { id: string } }) {
             createdAt={childItem.createdAt}
             comments={childItem.children}
             isComment
+            images={childItem.children}
           />
         ))}
       </div>

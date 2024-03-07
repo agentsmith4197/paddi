@@ -173,8 +173,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        "primary-500": "#808000",
-        "secondary-500": "#4CBB17",
+        "primary-500": "#00ff00",
+        "secondary-500": "#98FF98",
         blue: "#0095F6",
         "logout-btn": "#FF5A5A",
         "navbar-menu": "rgba(16, 16, 18, 0.6)",
@@ -182,7 +182,7 @@ module.exports = {
         "dark-2": "#121417",
         "dark-3": "#101012",
         "dark-4": "#1F1F22",
-        "light-1": "#FFFFFF",
+        "light-1": "#4CBB17",
         "light-2": "#EFEFEF",
         "light-3": "#7878A3",
         "light-4": "#5C5C7B",

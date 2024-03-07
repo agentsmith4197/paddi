@@ -10,7 +10,7 @@ export const connectToDB = async () => {
 
   // If the connection is already established, return without creating a new connection.
   if (isConnected) {
-    console.log("MongoDB connection already established");
+    console.log("MongoDB connection established");
     return;
   }
 

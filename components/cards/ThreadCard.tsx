@@ -1,8 +1,12 @@
+// "use client"
+// "use client"
 import Image from "next/image";
 import Link from "next/link";
 
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
+// import { useState } from "react";
+
 
 interface Props {
   id: string;
@@ -26,6 +30,7 @@ interface Props {
     };
   }[];
   isComment?: boolean;
+  images: string[];
 }
 
 function ThreadCard({
@@ -38,10 +43,14 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
+  images,
 }: Props) {
+  // const [showAllImages, setShowAllImages] = useState(false);
+  const displayedImages = images.slice(0, 4);
+  // const displayedImages = showAllImages ? images : images.slice(0, 4);
   return (
     <article
-      className={`flex w-full flex-col rounded-xl ${
+      className={`flex w-full h-auto flex-col rounded-xl ${
         isComment ? "px-0 xs:px-7" : "bg-dark-2 p-7"
       }`}
     >
@@ -68,6 +77,53 @@ function ThreadCard({
             </Link>
 
             <p className='mt-2 text-small-regular text-light-2'>{content}</p>
+
+            <div className="grid grid-cols-2">
+        {/* Render displayed images */}
+        {displayedImages.map((imageUrl, index) => (
+          <div key={index} className="image-box">
+            <Image
+              src={imageUrl}
+              alt={`Image ${index + 1}`}
+              layout="responsive"
+              width={200}
+              height={200}
+              objectFit="cover"
+              className="file_uploader-img" 
+            />
+          </div>
+        ))}
+        {/* Add more button if there are more than 4 images */}
+        {images && images.length > 4 && (
+          <div className="relative">
+            <button
+            
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 text-white hover:bg-opacity-70 focus:outline-none"
+            >
+              <span className="text-3xl">+</span>
+            </button>
+          </div>
+
+      //    <div className="flex flex-1 justify-center h-10 w-auto p-3 lg:p-7 col-2 gap-4">
+      //    {images && images.slice(0, 4).map((imageUrl, index) => (
+      //      <div key={index}  className="image-box">
+      //        <Image
+      //          src={imageUrl}
+      //          alt={`Image ${index + 1}`}
+      //          layout="cover"
+      //          width={isComment ? 400 : 200} 
+      //          height={isComment ? 300 : 10}
+      //          objectFit="cover"
+      //          className="file_uploader-img" 
+      //        />
+      //      </div>
+      //    ))}
+      //    {images && images.length > 4 && (
+      //      <div className="flex items-center justify-center w-24 h-24 rounded-md bg-gray-200">
+      //        <p className="text-xs text-gray-600">+{images.length - 4}</p>
+      //      </div>
+          )}
+       </div>
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className='flex gap-3.5'>

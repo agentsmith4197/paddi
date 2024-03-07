@@ -53,13 +53,16 @@ interface Params {
   author: string,
   communityId: string | null,
   path: string,
+  images: string[],
 }
 
-export async function createThread({ text, author, communityId, path }: Params
+export async function createThread({ text, author, communityId, path, images }: Params
 ) {
   try {
     connectToDB();
 
+
+    
     const communityIdObject = await Community.findOne(
       { id: communityId },
       { _id: 1 }
@@ -69,6 +72,7 @@ export async function createThread({ text, author, communityId, path }: Params
       text,
       author,
       community: communityIdObject, // Assign communityId if provided, or leave it null for personal account
+      images: images,
     });
 
     // Update User model
