@@ -10,8 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
-import uploadFilesToFirebase from "@/app/api/firebase/fileUpload"; // Import the file upload function for Firebase
-import FileUploader from "../shared/FileUploader";
+// import uploadFilesToFirebase from "@/app/api/firebase/fileUpload"; // Import the file upload function for Firebase
+// import FileUploader from "../shared/FileUploader";
 
 interface Props {
   userId: string;
@@ -21,8 +21,8 @@ function PostThread({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { organization } = useOrganization();
-  const [images, setImages] = useState<string[]>([]);
-  const [files, setFiles] = useState<File[]>([]); // State to hold the selected files
+  // const [images, setImages] = useState<string[]>([]);
+  // const [files, setFiles] = useState<File[]>([]); // State to hold the selected files
 
   const form = useForm<z.infer<typeof ThreadValidation>>({
     resolver: zodResolver(ThreadValidation),
@@ -35,14 +35,14 @@ function PostThread({ userId }: Props) {
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
     try {
       // Upload files to Firebase Storage
-      const uploadedImageUrls = await uploadFilesToFirebase(files);
+      // const uploadedImageUrls = await uploadFilesToFirebase(files);
 
       const threadData = {
         text: values.thread,
         author: userId,
         communityId: organization ? organization.id : null,
         path: pathname,
-        images: uploadedImageUrls,
+        // images: uploadedImageUrls,
       };
 
       await createThread(threadData);
@@ -54,9 +54,9 @@ function PostThread({ userId }: Props) {
     }
   };
 
-  const handleImageUpload = (uploadedFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
-  };
+  // const handleImageUpload = (uploadedFiles: File[]) => {
+  //   setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
+  // };
 
   return (
     <Form {...form}>
@@ -78,14 +78,14 @@ function PostThread({ userId }: Props) {
           )}
         />
 
-        <FileUploader
+        {/* <FileUploader
           fieldChange={handleImageUpload}
           mediaUrls={[]} // Pass any initial image URLs if needed
         />
 
         {images.map((imageUrl, index) => (
           <img key={index} src={imageUrl} alt={`Image ${index + 1}`} className="w-auto h-7" />
-        ))}
+        ))} */}
 
         <Button type="submit" className="bg-primary-500">
           Post

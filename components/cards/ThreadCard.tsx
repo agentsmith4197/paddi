@@ -30,7 +30,7 @@ interface Props {
     };
   }[];
   isComment?: boolean;
-  images: string[];
+  // images: string[];
 }
 
 function ThreadCard({
@@ -43,10 +43,10 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
-  images,
+  // images,
 }: Props) {
   // const [showAllImages, setShowAllImages] = useState(false);
-  const displayedImages = images.slice(0, 4);
+  // const displayedImages = images.slice(0, 4);
   // const displayedImages = showAllImages ? images : images.slice(0, 4);
   return (
     <article
@@ -78,8 +78,8 @@ function ThreadCard({
 
             <p className='mt-2 text-small-regular text-light-2'>{content}</p>
 
-            <div className="grid grid-cols-2">
-        {/* Render displayed images */}
+            {/* <div className="grid grid-cols-2">
+        {/* Render displayed images
         {displayedImages.map((imageUrl, index) => (
           <div key={index} className="image-box">
             <Image
@@ -93,7 +93,7 @@ function ThreadCard({
             />
           </div>
         ))}
-        {/* Add more button if there are more than 4 images */}
+         Add more button if there are more than 4 images 
         {images && images.length > 4 && (
           <div className="relative">
             <button
@@ -102,9 +102,9 @@ function ThreadCard({
             >
               <span className="text-3xl">+</span>
             </button>
-          </div>
+          </div> */}
 
-      //    <div className="flex flex-1 justify-center h-10 w-auto p-3 lg:p-7 col-2 gap-4">
+      {/* //    <div className="flex flex-1 justify-center h-10 w-auto p-3 lg:p-7 col-2 gap-4">
       //    {images && images.slice(0, 4).map((imageUrl, index) => (
       //      <div key={index}  className="image-box">
       //        <Image
@@ -121,9 +121,9 @@ function ThreadCard({
       //    {images && images.length > 4 && (
       //      <div className="flex items-center justify-center w-24 h-24 rounded-md bg-gray-200">
       //        <p className="text-xs text-gray-600">+{images.length - 4}</p>
-      //      </div>
+      //      </div> 
           )}
-       </div>
+       </div> */}
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className='flex gap-3.5'>

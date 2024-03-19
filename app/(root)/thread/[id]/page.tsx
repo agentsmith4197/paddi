@@ -41,7 +41,7 @@ async function page({ params }: { params: { id: string } }) {
           community={thread.community}
           createdAt={thread.createdAt}
           comments={thread.children}
-          images={thread.images}
+          // images={thread.images}
         />
       </div>
 
@@ -66,7 +66,7 @@ async function page({ params }: { params: { id: string } }) {
             createdAt={childItem.createdAt}
             comments={childItem.children}
             isComment
-            images={childItem.children}
+            // images={childItem.children}
           />
         ))}
       </div>

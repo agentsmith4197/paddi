@@ -27,7 +27,7 @@ const threadSchema = new mongoose.Schema({
       ref: "Thread",
     },
   ],
-  images: [String],
+  // images: [String],
 });
 
 const Thread = mongoose.models.Thread || mongoose.model("Thread", threadSchema);
